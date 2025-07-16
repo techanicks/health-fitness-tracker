@@ -27,7 +27,7 @@ if menu == "Daily Log":
     if st.button("Save Daily Log"):
         df = pd.read_csv("health_log.csv")
         new_data = {"Date": today, "Sleep Hours": sleep, "Water Intake (L)": water, "Mood": mood, "Steps": steps}
-        df = df.append(new_data, ignore_index=True)
+        df = pd.concat([df, pd.DataFrame([new_data])], ignore_index=True)
         df.to_csv("health_log.csv", index=False)
         st.success("Daily log saved!")
 
